@@ -242,6 +242,7 @@ export const args = Args.create(
           ["organ", "Get your steel organ"],
           ["menagerie", "Unlock the Cobb's Knob Menagerie"],
           ["dis", "Complete the Suburbs of Dis quest"],
+          ["corral,", "Unlock coral corral"]
         ],
         setting: "",
       }),
