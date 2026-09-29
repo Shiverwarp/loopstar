@@ -44,7 +44,7 @@ export const CorralUnlockQuest: Quest = {
     },
     {
       name: "Fishy Charging",
-      after: ["Fishy", "Driving Waterproofly"],
+      after: ["Fishy", "Driving Waterproofly", "Driving Waterproofly"],
       ready: () => questStep("questS01OldGuy") === 0,
       completed: () => get("_shivHomesteaderFishyPrepped", false),
       do: $location`The Briniest Deepests`,
@@ -59,7 +59,7 @@ export const CorralUnlockQuest: Quest = {
     },
     {
       name: "Get Wriggling Flytrap",
-      after: ["Fishy Charging"],
+      after: ["Fishy Charging", "Start Sea Quest"],
       ready: () => questStep("questS01OldGuy") === 0,
       completed: () => have($item`wriggling flytrap pellet`) || questStep("questS02Monkees") >= 0,
       do: $location`An Octopus's Garden`,
@@ -73,7 +73,7 @@ export const CorralUnlockQuest: Quest = {
     },
     {
       name: "Use Wriggling Flytrap",
-      after: ["Fishy Charging"],
+      after: ["Fishy Charging", "Get Wriggling Flytrap"],
       ready: () => questStep("questS01OldGuy") === 0,
       completed: () => questStep("questS02Monkees") >= 0,
       do: () => use($item`wriggling flytrap pellet`),
