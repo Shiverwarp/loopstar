@@ -1,26 +1,20 @@
-import { step } from "grimoire-kolmafia";
-import { cliExecute, drink, getWorkshed, haveEffect, haveEquipped, Item, itemAmount, toInt, use, visitUrl } from "kolmafia";
+import { cliExecute, haveEffect, use, visitUrl } from "kolmafia";
 import {
   $effect,
-  $familiar,
   $item,
-  $items,
   $location,
   $monster,
   $monsters,
   $skill,
   AsdonMartin,
-  ensureEffect,
   get,
   have,
   Macro,
   questStep,
   set,
 } from "libram";
-import { CombatStrategy, killMacro } from "../../engine/combat";
-import { Priorities } from "../../engine/priority";
+import { CombatStrategy } from "../../engine/combat";
 import { Quest } from "../../engine/task";
-import { asdonFualable, tryPlayApriling } from "../../lib";
 
 export const CorralUnlockQuest: Quest = {
   name: "Corral Unlock",
@@ -35,7 +29,6 @@ export const CorralUnlockQuest: Quest = {
 
     {
       name: "Fishy",
-      after: ["Check Florist"],
       completed: () => have($effect`Fishy`),
       do: () => use($item`fishy pipe`),
       limit: { tries: 1 },
@@ -43,7 +36,6 @@ export const CorralUnlockQuest: Quest = {
     },
     {
       name: "Start Sea Quest",
-      after: ["Check Florist"],
       ready: () => questStep("questS01OldGuy") === -1,
       completed: () => questStep("questS01OldGuy") === 0,
       do: () => visitUrl("place.php?whichplace=sea_oldman&action=oldman_oldman"),
