@@ -287,6 +287,11 @@ export class Engine extends BaseEngine<CombatActions, ActiveTask> {
     // Prepare combat macro
     if (combat.getDefaultAction() === undefined) combat.action("ignore");
 
+    // lasso if we still need to
+    if (get("lassoTraining") !== "expertly") {
+      combat.macro(new Macro().item($item`sea lasso`), undefined, true);
+    }
+
     // Use rock-band flyers if needed (300 extra as a buffer for mafia tracking)
     const blacklist = new Set<Location>(
       $locations`The Copperhead Club, The Black Forest, Oil Peak`
@@ -603,6 +608,10 @@ export class Engine extends BaseEngine<CombatActions, ActiveTask> {
       if (!task.boss && !freecombat && !modifier.includes("-combat") && !modifier.includes("ML"))
         outfit.equip($item`carnivorous potted plant`);
       if (glass_useful) outfit.equip($item`cursed magnifying glass`);
+      if (get("lassoTraining") !== "expertly") {
+        outfit.equip($item`sea cowboy hat`);
+        outfit.equip($item`sea chaps`);
+      }
     }
 
     // Determine if it is useful to target monsters with an orb (with no predictions).

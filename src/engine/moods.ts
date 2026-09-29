@@ -10,6 +10,7 @@ import {
   inCasual,
   Item,
   itemAmount,
+  mallPrice,
   mpCost,
   myClass,
   myHp,
@@ -107,6 +108,13 @@ function getRelevantEffects(): { [modifier: string]: Effect[] } {
     if (have($skill`Emotionally Chipped`) && get("_feelLonelyUsed") < 3)
       result["-combat"].push($effect`Feeling Lonely`);
   }
+
+  if (mallPrice($item`deodorant`) < 1000 || mallPrice($item`chunk of rock salt`) < 1000) {
+    result["-combat"].push($effect`Fresh Scent`);
+  }
+  if (mallPrice($item`Mer-kin hidepaint`) < 1000) { result["-combat"].push($effect`Colorfully Concealed`); }
+  if (mallPrice($item`short stick of butter`) < 1000) { result["-combat"].push($effect`Shortly Buttered`); }
+  if (mallPrice($item`trampled ticket stub`) < 1000) { result["-combat"].push($effect`Feeling Sneaky`); }
 
   if (have($item`ultra-soft ferns`)) {
     result["-combat"].push($effect`Ultra-Soft Steps`);
@@ -268,17 +276,6 @@ export function applyEffects(modifier: string, other_effects: Effect[]): void {
   }
 
   ensureWithMPSwaps(useful_effects);
-
-  // Use asdon martin
-  if (getWorkshed() === $item`Asdon Martin keyfob (on ring)` && asdonFualable(37)) {
-    if (modifier.includes("-combat") && have($effect`Silent Running`))
-      AsdonMartin.drive(AsdonMartin.Driving.Stealthily);
-    // else if (modifier.includes("+combat")) AsdonMartin.drive(AsdonMartin.Driving.Obnoxiously);
-    // else if (modifier.includes("init")) AsdonMartin.drive(AsdonMartin.Driving.Quickly);
-    if (modifier.includes("meat") || modifier.includes("item")) {
-      if (!have($effect`Driving Observantly`)) AsdonMartin.drive(AsdonMartin.Driving.Observantly);
-    }
-  }
 }
 
 export function ensureWithMPSwaps(effects: Effect[], required = true) {

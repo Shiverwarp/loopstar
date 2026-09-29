@@ -1582,6 +1582,11 @@ core-js@^3.16.4:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.45.0.tgz#556c2af44a2d9c73ea7b49504392474a9f7c947e"
   integrity sha512-c2KZL9lP4DjkN3hk/an4pWn5b5ZefhRJnAc42n6LJ19kSnbeRbdQZE5dSeE2LBol1OwJD3X1BQvFTAsa8ReeDA==
 
+core-js@^3.47.0, core-js@^3.50.0:
+  version "3.50.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.50.0.tgz#a18646fcb0097650189b4504c803e887bcae4c0a"
+  integrity sha512-BRWgOLKkFeCgRudR6zrs8p9XJZcE14grzKMMssoYrk6krtuEZ7MTKPIY5RzOnqsEKIR9kst7wNzphttraT+Yqw==
+
 create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
@@ -1638,9 +1643,9 @@ electron-to-chromium@^1.5.173:
   integrity sha512-m1xWB3g7vJ6asIFz+2pBUbq3uGmfmln1M9SSvBe4QIFWYrRHylP73zL/3nMjDmwz8V+1xAXQDfBd6+HPW0WvDQ==
 
 entities@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/entities/-/entities-7.0.0.tgz#2ae4e443f3f17d152d3f5b0f79b932c1e59deb7a"
-  integrity sha512-FDWG5cmEYf2Z00IkYRhbFrwIwvdFKH07uV8dvNy0omp/Qb1xcyCWp2UDtcwJF4QZZvk0sLudP6/hAu42TaqVhQ==
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-7.0.1.tgz#26e8a88889db63417dcb9a1e79a3f1bc92b5976b"
+  integrity sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==
 
 esbuild-plugin-babel@^0.2.3:
   version "0.2.3"
@@ -1957,11 +1962,11 @@ graphemer@^1.4.0:
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
 grimoire-kolmafia@^0.3.31:
-  version "0.3.33"
-  resolved "https://registry.yarnpkg.com/grimoire-kolmafia/-/grimoire-kolmafia-0.3.33.tgz#b56fa60cba48aea3fde88d68090ed2174a607b78"
-  integrity sha512-yidkJES1IKMAGuqAw8OLgX7p/XBcdDNXs2yt6zjP640ZgwFQKfLgxm42pdK/dt9WGzlSKMjIwrosndsENnOBNQ==
+  version "0.3.35"
+  resolved "https://registry.yarnpkg.com/grimoire-kolmafia/-/grimoire-kolmafia-0.3.35.tgz#0dc556a4a533afd015b8218e8a5a66cae7ea0b66"
+  integrity sha512-Q5Cfn+abMbbXFs0XgVy10/gj5u1p7ER/TUKMIThxy2uVcl8g/4aRschCYQcsXWFSFz7JY29g7UbPdm0yi6qoZQ==
   dependencies:
-    core-js "^3.16.4"
+    core-js "^3.50.0"
 
 has-flag@^4.0.0:
   version "4.0.0"
@@ -1974,11 +1979,6 @@ hasown@^2.0.2:
   integrity sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==
   dependencies:
     function-bind "^1.1.2"
-
-html-entities@^2.5.2:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.6.0.tgz#7c64f1ea3b36818ccae3d3fb48b6974208e984f8"
-  integrity sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==
 
 ignore@^5.2.0:
   version "5.3.2"
@@ -2107,9 +2107,9 @@ keyv@^4.5.4:
     json-buffer "3.0.1"
 
 kolmafia@^5.28889.0:
-  version "5.28889.0"
-  resolved "https://registry.yarnpkg.com/kolmafia/-/kolmafia-5.28889.0.tgz#8d760dc68fe0adbb61661e01a7a5785fa9456cb1"
-  integrity sha512-j38hFACHQm4F09hlXtN/zlUVYua5yQIhYn6GsqIa87yhqMMc/Opv5QOJTN/QGu8cT83QWHHubKBswxPLWBhyMA==
+  version "5.29309.0"
+  resolved "https://registry.yarnpkg.com/kolmafia/-/kolmafia-5.29309.0.tgz#e609325c7d4dc647afe6f2f179d8c3cb4df5ac82"
+  integrity sha512-SPhEauA/TFLwTyBrHwEVIGuuPHK0N7tZabnptX46PEyt3ChHKAVHj+KRtee6NdAZtIR+PXLxUIG3tClCGSAtiQ==
 
 levn@^0.4.1:
   version "0.4.1"
@@ -2119,12 +2119,13 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-libram@^0.11.14:
-  version "0.11.14"
-  resolved "https://registry.yarnpkg.com/libram/-/libram-0.11.14.tgz#011527aba45e3225809e9f0decaf9b83fcce8325"
-  integrity sha512-EzuyU8fru9rYWnQkaWGcknZJ6JgwLIH+GDI8NbCKgVsA7MuSKE6CU/Do/I18vm/dmgjqSbivzE8wcjKxUDNTAQ==
+libram@^0.11.18:
+  version "0.11.33"
+  resolved "https://registry.yarnpkg.com/libram/-/libram-0.11.33.tgz#505060e9c4df496f6810f93f690f7b33d95fb3a9"
+  integrity sha512-yi02GnhbCQFEer+WMcymhlIu6w7+EnvOvpEGwTGIwRfjqu5Bt2AetnxGxTZJ38KjXDdoPDio/0P4gdu/NNRj0Q==
   dependencies:
-    html-entities "^2.5.2"
+    core-js "^3.47.0"
+    entities "^7.0.0"
 
 locate-path@^6.0.0:
   version "6.0.0"

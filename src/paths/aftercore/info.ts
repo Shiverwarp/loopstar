@@ -13,6 +13,7 @@ import { KnobQuest } from "../../tasks/level5";
 import { MenagerieQuest } from "./menagerie";
 import { myAscensions } from "kolmafia";
 import { DisQuest } from "./dis";
+import { CorralUnlockQuest } from "./corral";
 
 export class AftercoreInfo implements PathInfo {
   name(): string {
@@ -36,6 +37,8 @@ export class AftercoreInfo implements PathInfo {
         return have($item`Cobb's Knob Menagerie key`);
       case "dis":
         return get("lastThingWithNoNameDefeated") === myAscensions();
+      case "corral":
+        return get("lassoTraining") === "expertly" && get("corralUnlocked");
       default:
         throw `Unknown goal ${goal}`;
     }
@@ -60,6 +63,8 @@ export class AftercoreInfo implements PathInfo {
         return getTasks([KnobQuest, MenagerieQuest]);
       case "dis":
         return getTasks([DisQuest]);
+      case "corral":
+        return getTasks([CorralUnlockQuest]);
       default:
         throw `Unknown goal ${goal}`;
     }
