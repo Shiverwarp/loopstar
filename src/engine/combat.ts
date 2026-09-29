@@ -92,6 +92,14 @@ export function killMacro(hard?: boolean): Macro {
       result.trySkill($skill`Darts: Throw at %part1`);
     }
   }
+  //delevel
+  result.skill($skill`Curse of Weaksauce`)
+    .trySkill($skill`Pocket Crumbs`)
+    .trySkill($skill`Micrometeorite`)
+    .item([$item`train whistle`, $item`Rain-Doh indigo cup`])
+    .trySkill($skill`Summon Love Mosquito`)
+    .tryItem($item`Time-Spinner`)
+    .skill($skill`Entangling Noodles`);
 
   if (!haveEquipped($item`June cleaver`) && have($skill`Saucestorm`)) {
     result.while_("!mpbelow 6", new Macro().skill($skill`Saucestorm`));

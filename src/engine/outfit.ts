@@ -342,7 +342,8 @@ export function equipDefaults(
   if (!freecombat) outfit.equip($item`mafia thumb ring`);
   if (atLevel(11)) outfit.equip($item`lucky gold ring`);
 
-  if (get("sweat") < 15) outfit.equip($item`designer sweatpants`);
+  outfit.equip($item`June cleaver`);
+  if (get("sweat") < 75) outfit.equip($item`designer sweatpants`);
 
   if (
     outfit.haveEquipped($item`Jurassic Parka`) &&
