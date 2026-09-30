@@ -1,4 +1,4 @@
-import { cliExecute, haveEffect, use, visitUrl } from "kolmafia";
+import { cliExecute, haveEffect, myMaxhp, restoreHp, use, visitUrl } from "kolmafia";
 import {
   $effect,
   $item,
@@ -56,6 +56,9 @@ export const CorralUnlockQuest: Quest = {
       peridot: $monster`acoustic electric eel`,
       parachute: $monster`acoustic electric eel`,
       limit: { tries: 20 },
+      prepare: () => {
+        restoreHp(myMaxhp());
+      },
     },
     {
       name: "Get Wriggling Flytrap",
@@ -69,6 +72,9 @@ export const CorralUnlockQuest: Quest = {
         .kill(),
       peridot: $monster`Neptune flytrap`,
       parachute: $monster`Neptune flytrap`,
+      prepare: () => {
+        restoreHp(myMaxhp());
+      },
       limit: { tries: 15 },
     },
     {
@@ -99,6 +105,9 @@ export const CorralUnlockQuest: Quest = {
       choices: { 299: 1 },
       combat: new CombatStrategy().ignore(),
       limit: { tries: 15 },
+      prepare: () => {
+        restoreHp(myMaxhp());
+      },
     },
     {
       name: "Talk to Big Brother",
@@ -127,6 +136,9 @@ export const CorralUnlockQuest: Quest = {
       outfit: { modifier: "-combat" },
       combat: new CombatStrategy().ignore(),
       limit: { tries: 20 },
+      prepare: () => {
+        restoreHp(myMaxhp());
+      },
     },
     {
       name: "Ask Grandpa About Wife",
@@ -146,12 +158,16 @@ export const CorralUnlockQuest: Quest = {
       outfit: { modifier: "+combat" },
       combat: new CombatStrategy().kill(),
       limit: { tries: 30 },
+      prepare: () => {
+        restoreHp(myMaxhp());
+      },
     },
     {
       name: "Get Stashbox",
       after: ["Get Lockkey"],
       ready: () => have($item`Mer-kin lockkey`),
       prepare: (): void => {
+        restoreHp(myMaxhp());
         if (get("_shivMerkinTentChoice") === "") {
           set("_shivMerkinTentChoice", 1);
         }
@@ -212,6 +228,9 @@ export const CorralUnlockQuest: Quest = {
       do: $location`The Briniest Deepests`,
       combat: new CombatStrategy().ignore($monsters`decent white shark, ganger`).kill(),
       limit: { tries: 5 },
+      prepare: () => {
+        restoreHp(myMaxhp());
+      },
     },
   ],
 };
