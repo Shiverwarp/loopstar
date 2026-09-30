@@ -1,12 +1,16 @@
 import { DelayedMacro, Guards, step } from "grimoire-kolmafia";
 import {
   appearanceRates,
+  buy,
   cliExecute,
   Effect,
   getFuel,
+  getIngredients,
   getWorkshed,
   Item,
+  itemAmount,
   Location,
+  mallPrice,
   Monster,
   myAdventures,
   myAscensions,
@@ -16,6 +20,7 @@ import {
   myPrimestat,
   Phylum,
   print,
+  retrieveItem,
   Skill,
   totalTurnsPlayed,
   visitUrl,
@@ -23,6 +28,7 @@ import {
 import {
   $familiar,
   $item,
+  $items,
   $location,
   $monsters,
   $stat,
@@ -308,4 +314,45 @@ export function getMacro(resourceDo: DelayedMacro | Item | Skill): Macro {
   if (resourceDo instanceof Item) return new Macro().item(resourceDo);
   if (resourceDo instanceof Skill) return new Macro().skill(resourceDo);
   return undelay(resourceDo);
+}
+
+export function priceToCraft(item: Item) {
+  if (item.tradeable) {
+    return mallPrice(item);
+  }
+  let total = 0;
+  const ingredients = getIngredients(item);
+  for (const i in ingredients) {
+    total += priceToCraft($item`${i}`) * ingredients[i];
+  }
+  return total;
+}
+
+export function acquire(qty: number, item: Item, maxPrice?: number, throwOnFail = true): number {
+  const startAmount = itemAmount(item);
+  const remaining = qty - startAmount;
+  if (maxPrice === undefined) throw `No price cap for ${item.name}.`;
+  if (
+    $items`Boris's bread, roasted vegetable of Jarlsberg, Pete's rich ricotta, roasted vegetable focaccia, baked veggie ricotta casserole, plain calzone, Deep Dish of Legend, Calzone of Legend, Pizza of Legend`.includes(
+      item
+    )
+  ) {
+    print(`Trying to acquire ${qty} ${item.plural}; max price ${maxPrice.toFixed(0)}.`, "green");
+    if (priceToCraft(item) <= maxPrice) {
+      retrieveItem(remaining, item);
+    }
+    return itemAmount(item) - startAmount;
+  }
+  if (!item.tradeable || (maxPrice !== undefined && maxPrice <= 0)) return 0;
+
+  print(`Trying to acquire ${qty} ${item.plural}; max price ${maxPrice.toFixed(0)}.`, "green");
+
+  if (qty * mallPrice(item) > 1000000) throw "Aggregate cost too high! Probably a bug.";
+
+  if (remaining <= 0) return qty;
+  if (maxPrice <= 0) throw `buying disabled for ${item.name}.`;
+
+  buy(remaining, item, maxPrice);
+  if (itemAmount(item) < qty && throwOnFail) throw `Mall price too high for ${item.name}.`;
+  return itemAmount(item) - startAmount;
 }

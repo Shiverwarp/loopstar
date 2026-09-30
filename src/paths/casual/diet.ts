@@ -51,6 +51,7 @@ import {
 } from "libram";
 import { Quest } from "../../engine/task";
 import { args } from "../../args";
+import { acquire, priceToCraft } from "../../lib";
 
 export const CasualDietQuest: Quest = {
   name: "CasualDiet",
@@ -148,47 +149,6 @@ const spleenCleaners = new Map([
   [$item`jar of fermented pickle juice`, 5],
   [$item`mojo filter`, 1],
 ]);
-
-function priceToCraft(item: Item) {
-  if (item.tradeable) {
-    return mallPrice(item);
-  }
-  let total = 0;
-  const ingredients = getIngredients(item);
-  for (const i in ingredients) {
-    total += priceToCraft($item`${i}`) * ingredients[i];
-  }
-  return total;
-}
-
-function acquire(qty: number, item: Item, maxPrice?: number, throwOnFail = true): number {
-  const startAmount = itemAmount(item);
-  const remaining = qty - startAmount;
-  if (maxPrice === undefined) throw `No price cap for ${item.name}.`;
-  if (
-    $items`Boris's bread, roasted vegetable of Jarlsberg, Pete's rich ricotta, roasted vegetable focaccia, baked veggie ricotta casserole, plain calzone, Deep Dish of Legend, Calzone of Legend, Pizza of Legend`.includes(
-      item
-    )
-  ) {
-    print(`Trying to acquire ${qty} ${item.plural}; max price ${maxPrice.toFixed(0)}.`, "green");
-    if (priceToCraft(item) <= maxPrice) {
-      retrieveItem(remaining, item);
-    }
-    return itemAmount(item) - startAmount;
-  }
-  if (!item.tradeable || (maxPrice !== undefined && maxPrice <= 0)) return 0;
-
-  print(`Trying to acquire ${qty} ${item.plural}; max price ${maxPrice.toFixed(0)}.`, "green");
-
-  if (qty * mallPrice(item) > 1000000) throw "Aggregate cost too high! Probably a bug.";
-
-  if (remaining <= 0) return qty;
-  if (maxPrice <= 0) throw `buying disabled for ${item.name}.`;
-
-  buy(remaining, item, maxPrice);
-  if (itemAmount(item) < qty && throwOnFail) throw `Mall price too high for ${item.name}.`;
-  return itemAmount(item) - startAmount;
-}
 
 function argmax<T>(values: [T, number][]): T {
   return values.reduce(([minValue, minScore], [value, score]) =>
@@ -315,9 +275,9 @@ function cookBookBatMenu(): MenuItem<MenuData>[] {
 function menu(): MenuItem<MenuData>[] {
   const spaghettiBreakfast =
     have($item`spaghetti breakfast`) &&
-    myFullness() === 0 &&
-    get("_timeSpinnerFoodAvailable") === "" &&
-    !get("_spaghettiBreakfastEaten")
+      myFullness() === 0 &&
+      get("_timeSpinnerFoodAvailable") === "" &&
+      !get("_spaghettiBreakfastEaten")
       ? 1
       : 0;
 

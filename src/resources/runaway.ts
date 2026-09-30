@@ -5,9 +5,12 @@ import {
   familiarWeight,
   getProperty,
   Item,
+  itemAmount,
+  mallPrice,
   mySign,
   myTurncount,
   numericModifier,
+  print,
   toInt,
   useFamiliar,
   visitUrl,
@@ -23,8 +26,9 @@ import {
   getActiveEffects,
   have,
   Macro,
+  maxBy,
 } from "libram";
-import { asdonFualable } from "../lib";
+import { acquire, asdonFualable } from "../lib";
 import { args } from "../args";
 import { CombatResource } from "./lib";
 
@@ -34,6 +38,34 @@ interface RunawaySource extends CombatResource {
   chance: () => number;
   useactively?: boolean;
   blocked?: string[];
+}
+
+// Free run items and their cost per run
+const freeRunItems = [
+  {
+    source: $item`pulled indigo taffy`,
+    cost: () => mallPrice($item`pulled indigo taffy`),
+    available: () => true,
+  },
+  {
+    source: $item`ink bladder`,
+    cost: () => mallPrice($item`ink bladder`) + get("valueOfAdventure") * 0.2,
+    available: () => true,
+  },
+];
+
+function bestFreeRunItem(): Item {
+  const bestFreeRun = maxBy(
+    freeRunItems,
+    ({ cost, available }) => (available() ? cost() : Infinity),
+    true
+  );
+  print(
+    `Best unlimited free run item is ${bestFreeRun.source} with cost ${bestFreeRun
+      .cost()
+      .toFixed()}`
+  );
+  return bestFreeRun.source;
 }
 
 export const runawayValue =
@@ -174,6 +206,34 @@ export function getRunawaySources(): RunawaySource[] {
       available: () => have($item`peppermint parasol`) && get("_navelRunaways") < 9,
       do: new Macro().item($item`peppermint parasol`),
       chance: () => (get("_navelRunaways") < 3 ? 1 : 0.2),
+      banishes: false,
+    },
+    {
+      name: "Indigo Taffy",
+      available: () =>
+        mallPrice($item`pulled indigo taffy`) < runawayValue &&
+        bestFreeRunItem() === $item`pulled indigo taffy`,
+      prepare: (): void => {
+        if (!(itemAmount($item`pulled indigo taffy`) >= 1)) {
+          acquire(1, $item`pulled indigo taffy`, runawayValue);
+        }
+      },
+      do: new Macro().item($item`pulled indigo taffy`),
+      chance: () => 1,
+      banishes: true,
+    },
+    {
+      name: "ink bladder",
+      available: () =>
+        mallPrice($item`ink bladder`) + get("valueOfAdventure") * 0.2 < runawayValue &&
+        bestFreeRunItem() === $item`ink bladder`,
+      prepare: (): void => {
+        if (!(itemAmount($item`ink bladder`) >= 1)) {
+          acquire(1, $item`ink bladder`, runawayValue);
+        }
+      },
+      do: new Macro().item($item`ink bladder`),
+      chance: () => 1,
       banishes: false,
     },
     {
