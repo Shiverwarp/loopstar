@@ -892,7 +892,7 @@ export class Engine extends BaseEngine<CombatActions, ActiveTask> {
       autoAbortThreshold: "-0.05",
       recoveryScript: "",
       removeMalignantEffects: false,
-      choiceAdventureScript: "loopstar_choice.js",
+      choiceAdventureScript: "homesteader_choice.js",
       lastChanceBurn: "",
       mpAutoRecoveryItems: ensureRecovery(
         "mpAutoRecoveryItems",
