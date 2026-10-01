@@ -2120,9 +2120,9 @@ levn@^0.4.1:
     type-check "~0.4.0"
 
 libram@^0.11.18:
-  version "0.11.33"
-  resolved "https://registry.yarnpkg.com/libram/-/libram-0.11.33.tgz#505060e9c4df496f6810f93f690f7b33d95fb3a9"
-  integrity sha512-yi02GnhbCQFEer+WMcymhlIu6w7+EnvOvpEGwTGIwRfjqu5Bt2AetnxGxTZJ38KjXDdoPDio/0P4gdu/NNRj0Q==
+  version "0.11.35"
+  resolved "https://registry.yarnpkg.com/libram/-/libram-0.11.35.tgz#66c1a1839d0a44378ff0a4c865654ec0d9cb4d24"
+  integrity sha512-t7jahh57x43W+9Ypkf5zuEH3crC4urKV+/sZZ+Y1rFfJIoIwRhELO5SKsLV0V5g41IuFT+K2ImIIky87jV8TQg==
   dependencies:
     core-js "^3.47.0"
     entities "^7.0.0"
