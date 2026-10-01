@@ -174,9 +174,6 @@ export const CorralUnlockQuest: Quest = {
         if (get("_shivMerkinTentChoice", 1) >= 4) {
           throw `We didn't find the stashbox in any of the NCs! What happened?`;
         }
-        set("choiceAdventure313", get("_shivMerkinTentChoice"));
-        set("choiceAdventure314", get("_shivMerkinTentChoice"));
-        set("choiceAdventure315", get("_shivMerkinTentChoice"));
       },
       completed: () =>
         have($item`Mer-kin stashbox`) || have($item`Mer-kin trailmap`) || get("intenseCurrents"),
