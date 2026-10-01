@@ -92,7 +92,7 @@ export function main(choice: number, page: string) {
   } else if (choice >= 48 && choice <= 61) {
     abort();
   } else if (choice === 312) {
-    runChoice(3);
+    runChoice(-1);
   } else if (choice === 315 || choice === 313 || choice === 314) {
     const encounters = get("_loopstar_outpost_choices", 0) + 1;
     set("_loopstar_outpost_choices", encounters);
