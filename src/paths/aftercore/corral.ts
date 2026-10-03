@@ -2,6 +2,7 @@ import { cliExecute, haveEffect, myMaxhp, restoreHp, use, visitUrl } from "kolma
 import {
   $effect,
   $item,
+  $items,
   $location,
   $monster,
   $monsters,
@@ -155,7 +156,7 @@ export const CorralUnlockQuest: Quest = {
       ready: () => questStep("questS02Monkees") >= 6,
       completed: () => get("merkinLockkeyMonster") !== null,
       do: $location`The Mer-Kin Outpost`,
-      outfit: { modifier: "+combat" },
+      outfit: { equip: $items`Brimstone Boxers`, modifier: "+combat" },
       combat: new CombatStrategy().kill(),
       limit: { tries: 30 },
       prepare: () => {
@@ -178,7 +179,7 @@ export const CorralUnlockQuest: Quest = {
       completed: () =>
         have($item`Mer-kin stashbox`) || have($item`Mer-kin trailmap`) || get("intenseCurrents"),
       do: $location`The Mer-Kin Outpost`,
-      outfit: { modifier: "-combat" },
+      outfit: { equip: $items`Brimstone Boxers`, modifier: "-combat" },
       combat: new CombatStrategy().ignore(),
       post: (): void => {
         if (
