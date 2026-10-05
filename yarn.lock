@@ -1582,7 +1582,7 @@ core-js@^3.16.4:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.45.0.tgz#556c2af44a2d9c73ea7b49504392474a9f7c947e"
   integrity sha512-c2KZL9lP4DjkN3hk/an4pWn5b5ZefhRJnAc42n6LJ19kSnbeRbdQZE5dSeE2LBol1OwJD3X1BQvFTAsa8ReeDA==
 
-core-js@^3.47.0, core-js@^3.50.0:
+core-js@^3.47.0:
   version "3.50.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.50.0.tgz#a18646fcb0097650189b4504c803e887bcae4c0a"
   integrity sha512-BRWgOLKkFeCgRudR6zrs8p9XJZcE14grzKMMssoYrk6krtuEZ7MTKPIY5RzOnqsEKIR9kst7wNzphttraT+Yqw==
@@ -2120,9 +2120,9 @@ levn@^0.4.1:
     type-check "~0.4.0"
 
 libram@^0.11.18:
-  version "0.11.35"
-  resolved "https://registry.yarnpkg.com/libram/-/libram-0.11.35.tgz#66c1a1839d0a44378ff0a4c865654ec0d9cb4d24"
-  integrity sha512-t7jahh57x43W+9Ypkf5zuEH3crC4urKV+/sZZ+Y1rFfJIoIwRhELO5SKsLV0V5g41IuFT+K2ImIIky87jV8TQg==
+  version "0.11.36"
+  resolved "https://registry.yarnpkg.com/libram/-/libram-0.11.36.tgz#dbd35de2ffb7eaf124c8d6720c442a97137b7805"
+  integrity sha512-oWFC9m6LFgc8BKyPTkslpJIjE6dAkrKcQoBH6UPRNe5vvJqPMnyjABolo90FelMGvuQQZVOgyrufSwdSLy5iHw==
   dependencies:
     core-js "^3.47.0"
     entities "^7.0.0"
