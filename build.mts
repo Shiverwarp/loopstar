@@ -16,8 +16,8 @@ const context = await esbuild.context({
     "process.env.GITHUB_REPOSITORY": `"${process.env?.["GITHUB_REPOSITORY"] ?? "CustomBuild"}"`,
   },
   entryPoints: {
-    "KoLmafia/scripts/loopstar/loopstar": "src/main.ts",
-    "KoLmafia/scripts/loopstar/loopstar_choice": "src/standalone/loopstar_choice.ts",
+    "KoLmafia/scripts/loopstar/homesteader": "src/main.ts",
+    "KoLmafia/scripts/loopstar/homesteader_choice": "src/standalone/loopstar_choice.ts",
     "KoLmafia/relay/relay_loopstar": "src/relay.ts",
   },
   entryNames: "[dir]/[name]",
