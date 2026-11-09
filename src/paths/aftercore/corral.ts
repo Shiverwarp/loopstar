@@ -189,7 +189,7 @@ export const CorralUnlockQuest: Quest = {
         )
           set("_shivMerkinTentChoice", get("_shivMerkinTentChoice", 1) + 1);
       },
-      limit: { tries: 15 },
+      limit: { tries: 20 },
     },
     {
       name: "Open Stashbox",
